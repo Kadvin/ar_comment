@@ -1,0 +1,33 @@
+Active Record Comment
+=======
+
+Support you define comment in your migration and use them as label in your model, views
+
+
+Example
+=======
+
+  def self.up
+    create_table "roles",:force => true, :comment => 'Play Role' do |t|
+      t.string   "name",  :null => false, :comment => "Ghost Name"
+      t.string   "type",  :null => false, :comment => "Sword Type"
+      t.timestamps
+    end
+  end
+
+Role.comment       # => "Play Role"
+Role.label         # as above
+
+Role.comment('name') # => "Ghost Name"
+Role.label('name')   # as above
+
+column = Role.columns_hash['name']
+column.comment # => 'Ghost Name'
+column.label   # as above
+
+Adapters
+=======
+  Mysql Adapter
+  Oracle Adapter
+
+Copyright (c) 2008 Kadvin, released under the MIT license
