@@ -1,8 +1,7 @@
 Active Record Comment
 =======
 
-Support you define comment in your migration and use them as label in your model, views
-
+Support you define table, column comment in your migration and use them as class/attribute's human name.
 
 Example
 =======
@@ -15,19 +14,21 @@ Example
     end
   end
 
-Role.comment       # => "Play Role"
-Role.label         # as above
+Role.human_name       # => "Play Role"
 
-Role.comment('name') # => "Ghost Name"
-Role.label('name')   # as above
+Role.human_attribute_name('name') # => "Ghost Name"
 
 column = Role.columns_hash['name']
-column.comment # => 'Ghost Name'
-column.label   # as above
+column.human_name # => 'Ghost Name'
 
-Adapters
+All those comments was used when developers havn't define any resources
+that is to say, I18n resources take precedence than schema comments
+
+When you dump the the schema, all those comments are output also.
+
+Supported Adapters
 =======
-  Mysql Adapter
-  Oracle Adapter
+ * Mysql Adapter
+ * Oracle Enhanced Adapter
 
 Copyright (c) 2008 Kadvin, released under the MIT license
